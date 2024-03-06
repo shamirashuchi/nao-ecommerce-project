@@ -10,12 +10,16 @@ class SubCategoryController extends Controller
 {
     public function index()
     {
-        return view('admin.sub-category.index', ['sub_categories' => SubCategory::all()]);
+        return view('admin.sub-category.index', [
+            'subCateogories' => SubCategory::all()
+        ]);
     }
 
     public function create()
     {
-        return view('admin.sub-category.add', ['categories' => Category::all()]);
+        return view('admin.sub-category.add', [
+            'categories' => Category::all()
+        ]);
     }
 
     public function store(Request $request)
@@ -28,7 +32,7 @@ class SubCategoryController extends Controller
     {
         return view('admin.sub-category.edit', [
             'categories'    => Category::all(),
-            'sub_category'  => SubCategory::find($id),
+            'subCateogory'  => SubCategory::find($id),
         ]);
     }
 

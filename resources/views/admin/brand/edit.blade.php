@@ -5,7 +5,7 @@
     <!-- PAGE-HEADER -->
     <div class="page-header">
         <div>
-            <h1 class="page-title">Brand</h1>
+            <h1 class="page-title">Edit Brand</h1>
         </div>
         <div class="ms-auto pageheader-btn">
             <ol class="breadcrumb">
@@ -41,7 +41,7 @@
                             <label for="email" class="col-md-3 form-label">Brand Image</label>
                             <div class="col-md-9">
                                 <input class="form-control" id="email" type="file" name="image"/>
-                                <img src="{{asset($brand->image)}}" alt="" height="100" width="120"/>
+                                <img src="{{asset($brand->image)}}" alt="" height="100" width="100"/>
                             </div>
                         </div>
                         <div class="row">

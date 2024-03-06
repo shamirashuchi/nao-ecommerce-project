@@ -5,7 +5,7 @@
     <!-- PAGE-HEADER -->
     <div class="page-header">
         <div>
-            <h1 class="page-title">Unit</h1>
+            <h1 class="page-title">Edit Unit</h1>
         </div>
         <div class="ms-auto pageheader-btn">
             <ol class="breadcrumb">
@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <p class="text-muted">{{session('message')}}</p>
-                    <form class="form-horizontal" action="{{route('unit.update', ['id' => $unit->id])}}" method="POST">
+                    <form class="form-horizontal" action="{{route('unit.update', ['id' => $unit->id])}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-4">
                             <label for="firstName" class="col-md-3 form-label">Unit Name</label>
@@ -32,9 +32,9 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <label for="" class="col-md-3 form-label">Unit Code</label>
+                            <label for="firstName" class="col-md-3 form-label">Unit Code</label>
                             <div class="col-md-9">
-                                <input class="form-control" id="" value="{{$unit->code}}" placeholder="Unit Code" type="text" name="code"/>
+                                <input class="form-control" id="firstName" value="{{$unit->code}}" placeholder="Unit Code" type="text" name="name"/>
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -46,7 +46,7 @@
                         <div class="row">
                             <label class="col-md-3 form-label">Publication Status</label>
                             <div class="col-md-9">
-                                <label><input type="radio" name="status" {{$unit->status == 1 ? 'checked' : ''}}  value="1"> Published</label>
+                                <label><input type="radio" name="status" {{$unit->status == 1 ? 'checked' : ''}} value="1"> Published</label>
                                 <label><input type="radio" name="status" {{$unit->status == 0 ? 'checked' : ''}} value="0"> Unpublished</label>
                             </div>
                         </div>

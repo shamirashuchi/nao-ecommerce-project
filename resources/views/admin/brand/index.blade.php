@@ -5,7 +5,7 @@
     <!-- PAGE-HEADER -->
     <div class="page-header">
         <div>
-            <h1 class="page-title">Brand</h1>
+            <h1 class="page-title">Manage Brand</h1>
         </div>
         <div class="ms-auto pageheader-btn">
             <ol class="breadcrumb">
@@ -15,6 +15,8 @@
         </div>
     </div>
     <!-- PAGE-HEADER END -->
+
+    <!-- Row -->
     <div class="row row-sm">
         <div class="col-lg-12">
             <div class="card">
@@ -50,6 +52,7 @@
                                         <a href="{{route('brand.delete', ['id' => $brand->id])}}" onclick="return confirm('Are you sure to delete this..');" class="btn btn-danger btn-sm rounded-0">
                                             <i class="fa fa-trash"></i>
                                         </a>
+
                                     </td>
                                 </tr>
                             @endforeach
@@ -60,5 +63,5 @@
             </div>
         </div>
     </div>
+    <!-- End Row -->
 @endsection
-

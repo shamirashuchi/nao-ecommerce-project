@@ -863,8 +863,8 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" enable-background="new 0 0 24 24" viewBox="0 0 24 24"><path d="M12.1124268,2.0010986C7.6941528,1.9389648,4.0620728,5.4703979,4,9.8886719c0,5.4482422,7.3642578,11.7285156,7.6777344,11.9931641C11.7677002,21.958313,11.881958,22.0001831,12,22c0.118042,0.0001831,0.2322998-0.041687,0.3222656-0.1181641C12.6357422,21.6171875,20,15.3369141,20,9.8886719C19.9391479,5.5579224,16.4431763,2.0619507,12.1124268,2.0010986z M12,20.8339844C10.5839844,19.5625,5,14.2666016,5,9.8886719C5.0353394,6.0553589,8.166626,2.973877,12,3c3.833374-0.026123,6.9647217,3.0553589,7,6.8886719C19,14.2626953,13.414978,19.5615234,12,20.8339844z M12,7c-1.6568604,0-3,1.3431396-3,3s1.3431396,3,3,3c1.6561279-0.0018311,2.9981689-1.3438721,3-3C15,8.3431396,13.6568604,7,12,7z M12,12c-1.1045532,0-2-0.8954468-2-2s0.8954468-2,2-2c1.1040039,0.0014038,1.9985962,0.8959961,2,2C14,11.1045532,13.1045532,12,12,12z"/></svg>
                                 <span class="side-menu__label">Product Module</span><i class="angle fa fa-angle-right"></i></a>
                             <ul class="slide-menu">
-                                <li><a href="{{route('product.create')}}" class="slide-item">Add Product</a></li>
-                                <li><a href="{{route('product.index')}}" class="slide-item">Manage Product</a></li>
+                                <li><a href="{{route("product.create")}}" class="slide-item">Add Product</a></li>
+                                <li><a href="{{route("product.index")}}" class="slide-item">Manage Product</a></li>
                             </ul>
                         </li>
 
@@ -877,7 +877,7 @@
                             </a>
                             <ul class="slide-menu">
                                 <li class="side-menu-label1"><a href="javascript:void(0)">Apps</a></li>
-                                <li><a href="calendar2.html" class="slide-item">Manage Order</a></li>
+                                <li><a href="{{route("manage.order")}}" class="slide-item">Manage Order</a></li>
                             </ul>
                         </li>
 
@@ -1442,9 +1442,11 @@
 <script src="{{asset('/')}}admin-assets/assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
 <script src="{{asset('/')}}admin-assets/assets/js/table-data.js"></script>
 
+
 <!-- INTERNAL Summernote Editor js -->
 <script src="{{asset('/')}}admin-assets/assets/plugins/summernote-editor/summernote1.js"></script>
 <script src="{{asset('/')}}admin-assets/assets/js/summernote.js"></script>
+
 
 <!-- INDEX JS -->
 <script src="{{asset('/')}}admin-assets/assets/js/index1.js"></script>
@@ -1466,5 +1468,24 @@
 </body>
 
 
-<!-- Mirrored from laravel8.spruko.com/noa/index by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 May 2023 13:08:40 GMT -->
+<script>
+    function getSubCategory(categoryId){
+        $.ajax({
+            type: "GET",
+            url: "{{route('get-sub-category-by-category-id')}}",
+            data: {category_id: categoryId},
+            DataType: "JSON",
+            success: function (response){
+                var option = '';
+                option += '<option value=""> -- Select Category Name -- </option>';
+                $.each(response,function (key, value){
+                    option += '<option value="'+value.id+'">' +value.name+'</option>';
+                });
+                $('#subCategoryId').empty();
+                $('#subCategoryId').append(option);
+            }
+        });
+    }
+</script>
+
 </html>

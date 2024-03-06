@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Unit;
 use Illuminate\Http\Request;
+use App\Models\Unit;
 
 class UnitController extends Controller
 {
     public function index()
     {
-        return view('admin.unit.index', ['units' => Unit::all()]);
+        return view('admin.unit.index', [
+            'units' =>Unit::all()
+        ]);
     }
 
     public function create()

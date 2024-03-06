@@ -19,104 +19,97 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h3 class="card-title">Product detail information</h3>
+                    <h3 class="card-title">Product Detail Information</h3>
                 </div>
                 <div class="card-body">
                     <p class="text-muted">{{session('message')}}</p>
-                   <table class="table table-bordered table-hover">
-                       <tr>
-                           <th>Product Id</th>
-                           <th>{{$product->id}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Name</th>
-                           <th>{{$product->name}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Code</th>
-                           <th>{{$product->code}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Category</th>
-                           <th>{{$product->category->name}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Sub-category</th>
-                           <th>{{$product->subCategory->name}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Brand</th>
-                           <th>{{$product->brand->name}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Unit</th>
-                           <th>{{$product->unit->name}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product short description</th>
-                           <th>{{$product->short_description}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product long Description</th>
-                           <th>{!! isset($product->long_description) ? $product->long_description : '' !!}</th>
-                       </tr>
-                       <tr>
-                           <th>Product meta title</th>
-                           <th>{{$product->meta_title}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product meta description</th>
-                           <th>{{$product->meta_description}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product regular price</th>
-                           <th>{{$product->regular_price}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product selling price</th>
-                           <th>{{$product->selling_price}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Stock amount</th>
-                           <th>{{$product->stock_amount}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Image</th>
-                           <th><img src="{{asset($product->image)}}" alt="" height="200" width="200" /> </th>
-                       </tr>
-                       <tr>
-                           <th>Product Other Image</th>
-                           <td>
-                               @foreach($product->otherImages as $otherImage)
-                               <img src="{{asset($otherImage->image)}}" alt="" height="100" width="100" />
-                               @endforeach
-                       </td>
-                       </tr>
-                       <tr>
-                           <th>Product status</th>
-                           <th>{{$product->status}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product feature status</th>
-                           <th>{{$product->featured_status}}</th>
-                       </tr>
-                       <tr>
-                           <th>Product Trending status</th>
-                           <th>{{$product->trending_status}}</th>
-                       </tr>
-                       <tr>
-                           <th>Total Sales</th>
-                           <th>{{$product->sales_count}}</th>
-                       </tr>
-                       <tr>
-                           <th>Total view</th>
-                           <th>{{$product->hit_count}}</th>
-                       </tr>
-                       <tr>
-                           <th>Publication status</th>
-                           <th>{{$product->publication_status}}</th>
-                       </tr>
-                   </table>
+                    <table class="table table-bordered table-hover">
+                        <tr>
+                            <th>Product Id</th>
+                            <td>{{$product->id}}</td>
+                        </tr>
+                        <tr>
+                            <th>Product Name</th>
+                            <td>{{$product->name}}</td>
+                        </tr>
+                        <tr>
+                            <th>Category Name</th>
+                            <td>{{isset($product->category->name) ? $product->category->name : ''}}</td>
+                        </tr>
+                        <tr>
+                            <th>Sub Category Name</th>
+                            <td>{{isset($product->subCategory->name) ? $product->subCategory->name : ''}}</td>
+                        </tr>
+                        <tr>
+                            <th>Brand Name</th>
+                            <td>{{isset($product->brand->name) ? $product->brand->name : ''}}</td>
+                        </tr>
+                        <tr>
+                            <th>Unit Name</th>
+                            <td>{{isset($product->unit->name) ? $product->unit->name : ''}}</td>
+                        </tr>
+                        <tr>
+                            <th>Product Code</th>
+                            <td>{{$product->code}}</td>
+                        </tr>
+                        <tr>
+                            <th>Short Description</th>
+                            <td>{{$product->short_description}}</td>
+                        </tr>
+                        <tr>
+                            <th>Long Description</th>
+                            <td>{!! $product->long_description !!}</td>
+                        </tr>
+                        <tr>
+                            <th>Meta Title</th>
+                            <td>{{$product->meta_title}}</td>
+                        </tr>
+                        <tr>
+                            <th>Meta Description</th>
+                            <td>{{$product->meta_description}}</td>
+                        </tr>
+                        <tr>
+                            <th>Product Regular Price</th>
+                            <td>{{$product->regular_price}}</td>
+                        </tr>
+                        <tr>
+                            <th>Product Selling Price</th>
+                            <td>{{$product->selling_price}}</td>
+                        </tr>
+                        <tr>
+                            <th>Stock Amount</th>
+                            <td>{{$product->stock_amount}}</td>
+                        </tr>
+                        <tr>
+                            <th>Product Image</th>
+                            <td>
+                                <img src="{{asset($product->image)}}" alt="" width="70px" height="70px">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Product Other Image</th>
+                            <td>@foreach($product->otherImage as $otherImage)
+                                    <img src="{{asset($otherImage->image)}}" alt="" width="70px" height="70px">
+                                @endforeach
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Product Feature Status</th>
+                            <td>{{$product->featured_status}}</td>
+                        </tr>
+                        <tr>
+                            <th>Product Trending Status</th>
+                            <td>{{$product->trending_status}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total Sales</th>
+                            <td>{{$product->sales_count}}</td>
+                        </tr>
+                        <tr>
+                            <th>Total View</th>
+                            <td>{{$product->hit_count}}</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>

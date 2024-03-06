@@ -8,17 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Unit extends Model
 {
     use HasFactory;
-
     private static $unit;
 
     public static function newUnit($request)
     {
-        self::saveBasicInfo(new Unit(), $request);
+        self::saveBasicInfo(new Unit(), $request,);
     }
 
     public static function updateUnit($request, $id)
     {
-        self::saveBasicInfo(Unit::find($id), $request);
+        self::saveBasicInfo(Unit::find($id), $request,);
     }
 
     public static function deleteUnit($id)
@@ -35,4 +34,5 @@ class Unit extends Model
         $unit->status         = $request->status;
         $unit->save();
     }
+
 }

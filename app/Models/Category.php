@@ -11,6 +11,7 @@ class Category extends Model
     use HasFactory;
 
     private static $category, $image, $extension, $imageName, $directory, $imageUrl;
+
     private static function getImageUrl($image)
     {
         self::$extension    = $image->getClientOriginalExtension(); // png
@@ -63,5 +64,10 @@ class Category extends Model
         {
             unlink($imageUrl);
         }
+    }
+
+    public function subCategory()
+    {
+        return $this->hasMany(SubCategory::class);
     }
 }

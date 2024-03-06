@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Brand extends Model
 {
     use HasFactory;
+
     private static $brand, $image, $extension, $imageName, $directory, $imageUrl;
 
     private static function getImageUrl($image)
     {
         self::$extension    = $image->getClientOriginalExtension(); // png
         self::$imageName    = time().'.'.self::$extension; // 32123435.png
-        self::$directory    = 'upload/brand-images/';
+        self::$directory    = 'upload/Brand-images/';
         $image->move(self::$directory, self::$imageName);
-        self::$imageUrl     = self::$directory.self::$imageName; // upload/category-images/32123435.png
+        self::$imageUrl     = self::$directory.self::$imageName; // upload/Brand-images/32123435.png
         return self::$imageUrl;
     }
 

@@ -83,11 +83,23 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-12">
+                    @if(Session::get('customer_id'))
                     <div class="top-end">
                         <div class="user">
                             <i class="lni lni-user"></i>
-                            Hello
+                            Hello {{Session::get('customer_name')}}
                         </div>
+                        <ul class="user-login">
+                            <li>
+                                <a href="">Dashboard</a>
+                            </li>
+                            <li>
+                                <a href="{{route('customer.logout')}}">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    @else
+                        <div class="top-end">
                         <ul class="user-login">
                             <li>
                                 <a href="{{route('customer.login')}}">Sign In</a>
@@ -96,7 +108,8 @@
                                 <a href="{{route('customer.register')}}">Register</a>
                             </li>
                         </ul>
-                    </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -159,41 +172,34 @@
                             <div class="cart-items">
                                 <a href="javascript:void(0)" class="main-btn">
                                     <i class="lni lni-cart"></i>
-                                    <span class="total-items">2</span>
+                                    <span class="total-items">{{count(Cart::content())}}</span>
                                 </a>
 
                                 <div class="shopping-item">
                                     <div class="dropdown-cart-header">
-                                        <span>2 Items</span>
-                                        <a href="cart.html">View Cart</a>
+                                        <span>{{count(Cart::content())}}</span>
+                                        <a href="{{route('cart.show')}}">View Cart</a>
                                     </div>
                                     <ul class="shopping-list">
+                                        @php($sum=0)
+                                        @foreach(Cart::content() as $cartItem)
                                         <li>
-                                            <a href="javascript:void(0)" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>
+                                            <a href="{{route('cart.delete', ['row_id' => $cartItem->rowId])}}" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>
                                             <div class="cart-img-head">
-                                                <a class="cart-img" href="product-details.html"><img src="{{ asset('/') }}front-end-assets/assets/images/header/cart-items/item1.jpg" alt="#"></a>
+                                                <a class="cart-img" href=""><img src="{{asset($cartItem->options->image)}}" alt="#"></a>
                                             </div>
                                             <div class="content">
-                                                <h4><a href="product-details.html">
-                                                        Apple Watch Series 6</a></h4>
-                                                <p class="quantity">1x - <span class="amount">$99.00</span></p>
+                                                <h4><a href="">{{$cartItem->name}}</a></h4>
+                                                <p class="quantity"> - {{$cartItem->price}} x {{$cartItem->qty}} = {{$cartItem->price * $cartItem->qty}} - <span class="amount" >{{$cartItem->subTotal}}</span></p>
                                             </div>
                                         </li>
-                                        <li>
-                                            <a href="javascript:void(0)" class="remove" title="Remove this item"><i class="lni lni-close"></i></a>
-                                            <div class="cart-img-head">
-                                                <a class="cart-img" href="product-details.html"><img src="{{ asset('/') }}front-end-assets/assets/images/header/cart-items/item2.jpg" alt="#"></a>
-                                            </div>
-                                            <div class="content">
-                                                <h4><a href="product-details.html">Wi-Fi Smart Camera</a></h4>
-                                                <p class="quantity">1x - <span class="amount">$35.00</span></p>
-                                            </div>
-                                        </li>
+                                            @php($sum = $sum + $cartItem->subtotal)
+                                        @endforeach
                                     </ul>
                                     <div class="bottom">
                                         <div class="total">
                                             <span>Total</span>
-                                            <span class="total-amount">$134.00</span>
+                                            <span class="total-amount">{{$sum}}</span>
                                         </div>
                                         <div class="button">
                                             <a href="checkout.html" class="btn animate">Checkout</a>
@@ -214,35 +220,25 @@
         <div class="row align-items-center">
             <div class="col-lg-8 col-md-6 col-12">
                 <div class="nav-inner">
-
                     <div class="mega-category-menu">
                         <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
                         <ul class="sub-category">
-                            <li><a href="product-grids.html">Electronics <i class="lni lni-chevron-right"></i></a>
+                            @foreach($categories as $category)
+                            <li><a href="{{route('product-category', ['id' => $category->id])}}">{{$category->name}}
+                                    @if(count($category->subCategory) > 0)
+                                    <i class="lni lni-chevron-right"></i>
+                                    @endif
+                                </a>
+                                @if(count($category->subCategory) > 0)
+
                                 <ul class="inner-sub-category">
-                                    <li><a href="product-grids.html">Digital Cameras</a></li>
-                                    <li><a href="product-grids.html">Camcorders</a></li>
-                                    <li><a href="product-grids.html">Camera Drones</a></li>
-                                    <li><a href="product-grids.html">Smart Watches</a></li>
-                                    <li><a href="product-grids.html">Headphones</a></li>
-                                    <li><a href="product-grids.html">MP3 Players</a></li>
-                                    <li><a href="product-grids.html">Microphones</a></li>
-                                    <li><a href="product-grids.html">Chargers</a></li>
-                                    <li><a href="product-grids.html">Batteries</a></li>
-                                    <li><a href="product-grids.html">Cables & Adapters</a></li>
+                                    @foreach($category->subCategory as $subCategory)
+                                    <li><a href="">{{$subCategory->name}}</a></li>
+                                    @endforeach
                                 </ul>
+                                @endif
                             </li>
-                            <li><a href="{{route('product-category')}}">accessories</a></li>
-                            <li><a href="product-grids.html">Televisions</a></li>
-                            <li><a href="product-grids.html">best selling</a></li>
-                            <li><a href="product-grids.html">top 100 offer</a></li>
-                            <li><a href="product-grids.html">sunglass</a></li>
-                            <li><a href="product-grids.html">watch</a></li>
-                            <li><a href="product-grids.html">man’s product</a></li>
-                            <li><a href="product-grids.html">Home Audio & Theater</a></li>
-                            <li><a href="product-grids.html">Computers & Tablets </a></li>
-                            <li><a href="product-grids.html">Video Games </a></li>
-                            <li><a href="product-grids.html">Home Appliances </a></li>
+                            @endforeach
                         </ul>
                     </div>
 
@@ -522,7 +518,7 @@
 </script>
 
 <script>
-    const finaleDate = new Date("February 15, 2024 00:00:00").getTime();
+    const finaleDate = new Date("February 15, 2025 00:00:00").getTime();
 
     const timer = () => {
         const now = new Date().getTime();

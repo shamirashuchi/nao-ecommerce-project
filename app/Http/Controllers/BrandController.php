@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
 use Illuminate\Http\Request;
+use App\Models\Brand;
 
 class BrandController extends Controller
 {
     public function index()
     {
-        return view('admin.brand.index', ['brands' => Brand::all()]);
+        return view('admin.brand.index', [
+            'brands' => Brand::all()
+        ]);
     }
 
     public function create()
@@ -25,7 +27,9 @@ class BrandController extends Controller
 
     public function edit($id)
     {
-        return view('admin.brand.edit', ['brand' => Brand::find($id)]);
+        return view('admin.brand.edit', [
+            'brand' => Brand::find($id)
+        ]);
     }
 
     public function update(Request $request, $id)

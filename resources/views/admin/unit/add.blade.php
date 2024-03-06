@@ -23,7 +23,7 @@
                 </div>
                 <div class="card-body">
                     <p class="text-muted">{{session('message')}}</p>
-                    <form class="form-horizontal" action="{{route('unit.store')}}" method="POST">
+                    <form class="form-horizontal" action="{{route('unit.store')}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-4">
                             <label for="firstName" class="col-md-3 form-label">Unit Name</label>
@@ -32,9 +32,9 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <label for="" class="col-md-3 form-label">Unit Code</label>
+                            <label for="firstName" class="col-md-3 form-label">Unit Code</label>
                             <div class="col-md-9">
-                                <input class="form-control" id="" placeholder="Unit Code" type="text" name="code"/>
+                                <input class="form-control" id="firstName" placeholder="Unit Code" type="text" name="code"/>
                             </div>
                         </div>
                         <div class="row mb-4">

@@ -31,11 +31,10 @@
                             <tr>
                                 <th class="wd-15p border-bottom-0">SL NO</th>
                                 <th class="wd-15p border-bottom-0">Name</th>
-                                <th class="wd-15p border-bottom-0">Code</th>
+                                <th class="wd-15p border-bottom-0">code</th>
                                 <th class="wd-20p border-bottom-0">Category</th>
                                 <th class="wd-15p border-bottom-0">Image</th>
                                 <th class="wd-10p border-bottom-0">Stock</th>
-                                <th class="wd-10p border-bottom-0">Status</th>
                                 <th class="wd-25p border-bottom-0">Action</th>
                             </tr>
                             </thead>
@@ -45,12 +44,11 @@
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$product->name}}</td>
                                     <td>{{$product->code}}</td>
-                                    <td>{{$product->category_id}}</td>
+                                    <td>{{$product->category->name}}</td>
                                     <td><img src="{{asset($product->image)}}" alt="" height="50" width="60"/></td>
-                                    <td>{{$product->stock_amount}}</td>
-                                    <td>{{$product->status}}</td>
+                                    <td>{{$product->stock}}</td>
                                     <td>
-                                        <a href="{{route('product.detail', ['id' => $product->id])}}" class="btn btn-info btn-sm rounded-0">
+                                        <a href="{{route('product.detail', ['id' => $product->id])}}" class="btn btn-success btn-sm rounded-0">
                                             <i class="fa fa-bookmark-o"></i>
                                         </a>
                                         <a href="{{route('product.edit', ['id' => $product->id])}}" class="btn btn-success btn-sm rounded-0">

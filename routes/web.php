@@ -11,20 +11,31 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\OrderController;
 
 Route::get('/',[ShopgridController::class,'index'])->name('home');
-Route::get('/product-category',[ShopgridController::class,'category'])->name('product-category');
-Route::get('/product-detail',[ShopgridController::class,'product'])->name('product-detail');
+Route::get('/product-category/{id}',[ShopgridController::class,'category'])->name('product-category');
+Route::get('/product-detail/{id}',[ShopgridController::class,'product'])->name('product-detail');
+
+Route::post('/cart/add',[CartController::class,'addCart'])->name('cart.add');
 Route::get('/cart/show',[CartController::class,'index'])->name('cart.show');
+Route::post('/cart/update/{row_id}',[CartController::class,'update'])->name('cart.update');
+Route::get('/cart/delete/{row_id}',[CartController::class,'delete'])->name('cart.delete');
+
 Route::get('/checkout',[CheckoutController::class,'index'])->name('checkout');
+Route::post('/new/order',[CheckoutController::class,'newOrder'])->name('new.order');
+Route::get('/complete-order',[CheckoutController::class,'completeorder'])->name('complete-order');
 Route::get('/customer/login',[CustomerAuthController::class,'login'])->name('customer.login');
+Route::post('/customer/login',[CustomerAuthController::class,'loginCheck'])->name('customer.login');
 Route::get('/customer/register',[CustomerAuthController::class,'register'])->name('customer.register');
+Route::post('/customer/register',[CustomerAuthController::class,'newCustomer'])->name('customer.register');
+Route::get('/customer/logout',[CustomerAuthController::class,'Logout'])->name('customer.logout');
+Route::get('/customer-dashboard',[CustomerAuthController::class,'dashboard'])->name('customer.dashboard');
+
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',])->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
     Route::get('/category/manage', [CategoryController::class, 'index'])->name('category.index');
     Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
     Route::post('/category/store', [CategoryController::class, 'store'])->name('category.store');
@@ -55,10 +66,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     Route::get('/product/manage', [ProductController::class, 'index'])->name('product.index');
     Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::get('/get-sub-category-by-category-id', [ProductController::class, 'getSubCategoryByCategory'])->name('get-sub-category-by-category-id');
     Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
     Route::get('/product/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-    Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
-    Route::get('/unit/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
     Route::get('/product/detail/{id}', [ProductController::class, 'detail'])->name('product.detail');
-
+    Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('product.delete');
+    Route::get('/manage/order', [OrderController::class, 'index'])->name('manage.order');
+    Route::get('/order/detail/{id}', [OrderController::class, 'orderDetail'])->name('order.detail');
+    Route::get('/order/invoice/{id}', [OrderController::class, 'orderInvoice'])->name('order.invoice');
+    Route::get('/order/download/{id}', [OrderController::class, 'orderdownload'])->name('order.download');
+    Route::get('/order/edit/{id}', [OrderController::class, 'orderEdit'])->name('order.edit');
+    Route::post('/order/update', [OrderController::class, 'orderUpdate'])->name('order.update');
 });

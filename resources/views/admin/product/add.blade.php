@@ -28,7 +28,7 @@
                         <div class="row mb-4">
                             <label for="firstName" class="col-md-3 form-label">Category Name</label>
                             <div class="col-md-9">
-                                <select class="form-control" name="category_id">
+                                <select class="form-control" name="category_id" onchange="getSubCategory(this.value)">
                                     <option value=""> -- Select Category Name -- </option>
                                     @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -39,10 +39,10 @@
                         <div class="row mb-4">
                             <label for="firstName" class="col-md-3 form-label">Sub Category Name</label>
                             <div class="col-md-9">
-                                <select class="form-control" name="sub_category_id">
+                                <select class="form-control" name="sub_category_id" id="subCategoryId">
                                     <option value=""> -- Select Sub Category Name -- </option>
-                                    @foreach($sub_categories as $sub_category)
-                                        <option value="{{$sub_category->id}}">{{$sub_category->name}}</option>
+                                    @foreach($subCategories as $subCategory)
+                                        <option value="{{$subCategory->id}}">{{$subCategory->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -62,7 +62,7 @@
                             <label for="firstName" class="col-md-3 form-label">Unit Name</label>
                             <div class="col-md-9">
                                 <select class="form-control" name="unit_id">
-                                    <option value=""> -- Select Unit Name -- </option>
+                                    <option value=""> -- Select unit Name -- </option>
                                     @foreach($units as $unit)
                                         <option value="{{$unit->id}}">{{$unit->name}}</option>
                                     @endforeach
@@ -84,23 +84,23 @@
                         <div class="row mb-4">
                             <label for="lastName" class="col-md-3 form-label">Short Description</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" id="lastName" placeholder="Short Description" name="short_description"></textarea>
+                                <textarea class="form-control" id="" placeholder="Short Description" name="short_description"></textarea>
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <label for="" class="col-md-3 form-label">Long Description</label>
+                            <label for="lastName" class="col-md-3 form-label">Long Description</label>
                             <div class="col-md-9">
                                 <textarea class="form-control" id="summernote" placeholder="Long Description" name="long_description"></textarea>
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <label for="" class="col-md-3 form-label">Meta Title</label>
+                            <label for="lastName" class="col-md-3 form-label">Meta Title</label>
                             <div class="col-md-9">
-                                <textarea class="form-control" id="" placeholder="Meta Title" name="meta_title"></textarea>
+                                <textarea class="form-control" id="" placeholder="Meta title" name="meta_title"></textarea>
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <label for="" class="col-md-3 form-label">Meta Description</label>
+                            <label for="lastName" class="col-md-3 form-label">Meta Description</label>
                             <div class="col-md-9">
                                 <textarea class="form-control" id="" placeholder="Meta Description" name="meta_description"></textarea>
                             </div>
@@ -108,10 +108,11 @@
                         <div class="row mb-4">
                             <label for="" class="col-md-3 form-label">Product Price</label>
                             <div class="col-md-9">
-                                <div class="input-group">
-                                    <input class="form-control" placeholder="Regular Price" type="number" name="regular_price"/>
-                                    <input class="form-control" placeholder="Selling Price" type="number" name="selling_price"/>
+                                <div class="">
+                                    <input class="form-control" id="" placeholder="Regular Price" type="number" name="regular_price"/>
+                                    <input class="form-control" id="" placeholder="Selling Price" type="number" name="selling_price"/>
                                 </div>
+
                             </div>
                         </div>
                         <div class="row mb-4">
@@ -121,7 +122,7 @@
                             </div>
                         </div>
                         <div class="row mb-4">
-                            <label for="" class="col-md-3 form-label">Product Image</label>
+                            <label for="email" class="col-md-3 form-label">Product Image</label>
                             <div class="col-md-9">
                                 <input class="form-control" id="" type="file" name="image" accept="image/*"/>
                             </div>
@@ -146,4 +147,3 @@
         </div>
     </div>
 @endsection
-

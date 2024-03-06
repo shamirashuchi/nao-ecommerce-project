@@ -1,16 +1,16 @@
 @extends('admin.master')
-@section('title', 'Manage Sub Category')
+@section('title', 'Manage Sub-category')
 
 @section('body')
     <!-- PAGE-HEADER -->
     <div class="page-header">
         <div>
-            <h1 class="page-title">Sub Category</h1>
+            <h1 class="page-title">Sub-category</h1>
         </div>
         <div class="ms-auto pageheader-btn">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Sub Category</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Manage Sub Category</li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Brand</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manage Brand</li>
             </ol>
         </div>
     </div>
@@ -21,9 +21,10 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h3 class="card-title">All Category Information</h3>
+                    <h3 class="card-title">All Sub-category Information</h3>
                 </div>
                 <div class="card-body">
+                    <p class="text-success text-center">{{session('message')}}</p>
                     <div class="table-responsive">
                         <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
                             <thead>
@@ -38,23 +39,23 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($sub_categories as $sub_category)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{isset($sub_category->category->name) ? $sub_category->category->name : ''}}</td>
-                                <td>{{$sub_category->name}}</td>
-                                <td>{{$sub_category->description}}</td>
-                                <td><img src="{{asset($sub_category->image)}}" alt="" height="50" width="80"/></td>
-                                <td>{{$sub_category->status}}</td>
-                                <td>
-                                    <a href="{{route('sub-category.edit', ['id' => $sub_category->id])}}" class="btn btn-success btn-sm rounded-0">
-                                        <i class="fa fa-edit"></i>
-                                    </a>
-                                    <a href="{{route('sub-category.delete', ['id' => $sub_category->id])}}" onclick="return confirm('Are you sure to delete this...')" class="btn btn-danger btn-sm rounded-0">
-                                        <i class="fa fa-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            @foreach($subCateogories as $subCateogory)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{isset($subCateogory->category->name) ? $subCateogory->category->name : ' '}}</td>
+                                    <td>{{$subCateogory->name}}</td>
+                                    <td>{{$subCateogory->description}}</td>
+                                    <td><img src="{{asset($subCateogory->image)}}" alt="" height="50" width="60"/></td>
+                                    <td>{{$subCateogory->status}}</td>
+                                    <td>
+                                        <a href="{{route('sub-category.edit', ['id' => $subCateogory->id])}}" class="btn btn-success btn-sm rounded-0">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                        <a href="{{route('sub-category.delete', ['id' => $subCateogory->id])}}" onclick="return confirm('Are you sure to delete this...');" class="btn btn-danger btn-sm rounded-0">
+                                            <i class="fa fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
