@@ -58,4 +58,42 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    private static $user, $image, $imageUrl;
+
+    public static function newUser($request)
+    {
+        self::saveBasicInfo(new User(), $request, getFileUrl($request->file('image'), 'upload/user-images/'));
+    }
+
+    public static function updateUser($request, $id)
+    {
+        self::$user     = User::find($id);
+        if (self::$image    = $request->file('image'))
+        {
+            deleteFile(self::$user->image);
+            self::$imageUrl = getFileUrl(self::$image, 'upload/user-images/');
+        }
+        else
+        {
+            self::$imageUrl = self::$user->image;
+        }
+        self::saveBasicInfo(self::$user, $request, self::$imageUrl);
+    }
+
+    public static function deleteUser($id)
+    {
+        self::$user = User::find($id);
+        deleteFile(self::$user->image);
+        self::$user->delete();
+    }
+
+    private static function saveBasicInfo($user, $request, $imageUrl)
+    {
+        $user->name                 = $request->name;
+        $user->email                = $request->email;
+        $user->password             = bcrypt($request->password);
+        $user->profile_photo_path   = $imageUrl;
+        $user->save();
+    }
 }

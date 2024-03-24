@@ -71,7 +71,6 @@ class ProductController extends Controller
             ProductImage::updateProductImage($images, $id);
         }
         return redirect('/product/manage')->with('message', 'Product info Update successfully');
-
     }
 
     public function delete($id)

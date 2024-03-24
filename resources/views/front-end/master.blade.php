@@ -91,7 +91,7 @@
                         </div>
                         <ul class="user-login">
                             <li>
-                                <a href="">Dashboard</a>
+                                <a href="{{ route('customer.dashboard') }}">Dashboard</a>
                             </li>
                             <li>
                                 <a href="{{route('customer.logout')}}">Logout</a>
@@ -100,14 +100,14 @@
                     </div>
                     @else
                         <div class="top-end">
-                        <ul class="user-login">
-                            <li>
-                                <a href="{{route('customer.login')}}">Sign In</a>
-                            </li>
-                            <li>
-                                <a href="{{route('customer.register')}}">Register</a>
-                            </li>
-                        </ul>
+                            <ul class="user-login">
+                                <li>
+                                    <a href="{{route('customer.login')}}">Sign In</a>
+                                </li>
+                                <li>
+                                    <a href="{{route('customer.register')}}">Register</a>
+                                </li>
+                            </ul>
                         </div>
                     @endif
                 </div>
@@ -233,7 +233,7 @@
 
                                 <ul class="inner-sub-category">
                                     @foreach($category->subCategory as $subCategory)
-                                    <li><a href="">{{$subCategory->name}}</a></li>
+                                    <li><a href="{{route('product-sub-category', ['id' => $subCategory->id])}}">{{$subCategory->name}}</a></li>
                                     @endforeach
                                 </ul>
                                 @endif

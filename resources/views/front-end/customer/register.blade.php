@@ -33,26 +33,26 @@
                     <div class="register-form">
                         <div class="title">
                             <h3>No Account? Register</h3>
-                            <p class="text-danger text-canter">{{session('message')}}</p>
+                            <p class="text-danger text-center">{{session('message')}}</p>
                         </div>
                         <form class="row" method="post" action="{{route('customer.register')}}">
                             @csrf
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="reg-fn">Full Name</label>
-                                    <input class="form-control" value="{{'name'}}" type="text" name="name" id="reg-fn" required/>
+                                    <input class="form-control" value="{{old('name')}}" type="text" name="name" id="reg-fn" required/>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="reg-email">E-mail Address</label>
-                                    <input class="form-control" type="email" name="email" value="{{'email'}}" id="reg-email" required/>
+                                    <input class="form-control" value="{{old('email')}}" type="email" name="email" id="reg-email" required/>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="reg-phone">Phone Number</label>
-                                    <input class="form-control" type="number" name="mobile"  value="{{'mobile'}}" id="reg-phone" required/>
+                                    <input class="form-control" value="{{old('mobile')}}" type="number" name="mobile" id="reg-phone" required/>
                                 </div>
                             </div>
                             <div class="col-sm-6">

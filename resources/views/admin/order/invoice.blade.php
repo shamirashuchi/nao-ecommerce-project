@@ -111,10 +111,10 @@
                 <table>
                     <tr>
                         <td class="title">
-{{--                            <img--}}
-{{--                                src="{{asset('/')}}admin/img/setting/43853.jpg"--}}
-{{--                                style="width: 100%; max-width: 300px"--}}
-{{--                            />--}}
+                            <img
+                                src="{{asset('/')}}admin/img/setting/43853.jpg"
+                                style="width: 100%; max-width: 300px"
+                            />
                         </td>
 
                         <td>
@@ -165,26 +165,27 @@
         </tr>
 
         <tr class="heading">
-            <td>Sl</td>
-            <td>product_name</td>
-            <td align="center">unit price</td>
+            <td>sl</td>
+            <td align="center">Product Name</td>
+            <td align="center">Unit Price</td>
             <td align="center">Quantity</td>
             <td align="right">Sub Total</td>
         </tr>
+
         @php
-            $sum=0;
+            $sum = 0;
         @endphp
-@foreach($order->orderDetails as $orderDetail)
+        @foreach($order->orderDetails as $orderDetail)
             <tr class="item">
-                <td>{{$loop->iteration}}</td>
-                <td>{{$orderDetail->product_name}}</td>
-                <td>{{$orderDetail->product_price}}</td>
-                <td class="right">{{$orderDetail->product_qty}}</td>
-                <td class="center">{{$total=$orderDetail->product_qty * $orderDetail->product_price}}</td>
+                <td>{{ $loop->iteration }}</td>
+                <td>{{ $orderDetail->product_name }}</td>
+                <td align="center">{{ $orderDetail->product_price }}</td>
+                <td align="center">{{ $orderDetail->product_qty }}</td>
+                <td align="center">{{ $total = $orderDetail->product_qty * $orderDetail->product_price }}</td>
             </tr>
-    @php
-    $sum=$sum+$total;
-    @endphp
+            @php
+            $sum += $total;
+            @endphp
         @endforeach
 
 
@@ -193,27 +194,27 @@
             <td></td>
             <td></td>
             <td align="center"></td>
-            <td align="right">Sub Total: {{$sum}}Tk.</td>
+            <td align="right">Sub Total: {{ $sum }}Tk.</td>
         </tr>
 
         <tr class="total">
             <td></td>
             <td></td>
             <td align="center"></td>
-            <td align="right">Tax: {{round($tax=$sum*0.15)}}Tk.</td>
+            <td align="right">Tax: {{ round($tax = $sum*0.15)  }}Tk.</td>
         </tr>
 
         <tr class="total">
             <td></td>
             <td></td>
             <td align="center"></td>
-            <td align="right">Shipping Cost: {{$shipping=100}}Tk.</td>
+            <td align="right">Shipping Cost: {{ $shipping = 100 }}Tk.</td>
         </tr>
         <tr class="total">
             <td></td>
             <td></td>
             <td align="center"></td>
-            <td align="right">Total Payable: {{$sum+$tax+$shipping}}Tk.</td>
+            <td align="right">Total Payable: {{ $sum+$tax+$shipping }}Tk.</td>
         </tr>
 
     </table>
@@ -222,6 +223,5 @@
 
 </body>
 </html>
-
 
 

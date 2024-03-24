@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('mobile')->unique();
             $table->string('password');
-            $table->string('blood_group')->nullable();
-            $table->string('date_of_birth')->nullable();
-            $table->string('nid')->nullable();
-            $table->string('address')->nullable();
-            $table->string('image')->nullable();
+            $table->text('date_of_birth')->nullable();
+            $table->text('blood_group')->nullable();
+            $table->text('nid')->nullable();
+            $table->text('address')->nullable();
+            $table->text('image')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });

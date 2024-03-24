@@ -9,8 +9,8 @@
         </div>
         <div class="ms-auto pageheader-btn">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="javascript:void(0);">Product</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Manage Product</li>
+                <li class="breadcrumb-item"><a href="javascript:void(0);">Order</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Manage Order</li>
             </ol>
         </div>
     </div>
@@ -21,27 +21,27 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h3 class="card-title">All Product Information</h3>
+                    <h3 class="card-title">All Order Information</h3>
                 </div>
                 <div class="card-body">
                     <p class="text-success text-center">{{session('message')}}</p>
                     <div class="table-responsive">
                         <table class="table table-bordered text-nowrap border-bottom" id="basic-datatable">
                             <thead>
-                            <tr>
-                                <th class="wd-15p border-bottom-0">SL NO</th>
-                                <th class="wd-15p border-bottom-0">Customer Info</th>
-                                <th class="wd-20p border-bottom-0">Order Date</th>
-                                <th class="wd-15p border-bottom-0">Order Total</th>
-                                <th class="wd-10p border-bottom-0">Order Status</th>
-                                <th class="wd-25p border-bottom-0">Action</th>
-                            </tr>
+                                <tr>
+                                    <th class="wd-15p border-bottom-0">SL NO</th>
+                                    <th class="wd-15p border-bottom-0">Customer Info</th>
+                                    <th class="wd-15p border-bottom-0">Order Date</th>
+                                    <th class="wd-15p border-bottom-0">Order Total</th>
+                                    <th class="wd-15p border-bottom-0">Order Status</th>
+                                    <th class="wd-25p border-bottom-0">Action</th>
+                                </tr>
                             </thead>
                             <tbody>
                             @foreach($orders as $order)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$order->customer->name.'('.$order->customer->mobile.')'}}</td>
+                                    <td>{{$order->customer->name.'( '.$order->customer->mobile.' )'}}</td>
                                     <td>{{$order->order_date}}</td>
                                     <td>{{$order->order_total}}</td>
                                     <td>{{$order->order_status}}</td>
@@ -50,12 +50,8 @@
                                             <i class="fa fa-bookmark-o"></i>
                                         </a>
                                         <a href="{{route('order.invoice', ['id' => $order->id])}}" class="btn btn-primary btn-sm rounded-0">
-                                            <i class="fa fa-star"></i>
-                                        </a>
-                                        <a href="{{route('order.download', ['id' => $order->id])}}" class="btn btn-primary btn-sm rounded-0">
                                             <i class="fa fa-download"></i>
                                         </a>
-
                                         <a href="{{route('order.edit', ['id' => $order->id])}}" class="btn btn-success btn-sm rounded-0">
                                             <i class="fa fa-edit"></i>
                                         </a>

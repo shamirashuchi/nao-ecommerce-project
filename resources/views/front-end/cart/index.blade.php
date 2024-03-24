@@ -126,7 +126,10 @@
             </div>
         </div>
     </div>
+
+
     <?php
-       Session::put('sum',$sum);
+        Session::put('sum',$sum);
     ?>
+
 @endsection

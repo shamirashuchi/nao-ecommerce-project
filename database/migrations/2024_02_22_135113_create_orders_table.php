@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('order_date');
             $table->text('order_timestamp');
             $table->string('order_status')->default('Pending');
-            $table->text('delivery_Address');
+            $table->text('delivery_address');
             $table->string('delivery_status')->default('Pending');
             $table->text('delivery_date')->nullable();
             $table->text('delivery_timestamp')->nullable();

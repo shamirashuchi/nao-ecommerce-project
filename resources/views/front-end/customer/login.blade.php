@@ -32,7 +32,7 @@
                         <div class="card-body">
                             <div class="title">
                                 <h3>Login Now</h3>
-                                <p>{{session('message')}}</p>
+                                <p class="text-danger">{{session('message')}}</p>
                             </div>
                             <div class="social-login">
                                 <div class="row">
@@ -49,7 +49,7 @@
                             </div>
                             <div class="form-group input-group">
                                 <label for="reg-fn">Email/Mobile</label>
-                                <input class="form-control" type="text" name="user_name" placeholder="Your Email or mobile" id="reg-email" required>
+                                <input class="form-control" type="text" name="user_name" placeholder="Your Email or Mobile" id="reg-email" required/>
                             </div>
                             <div class="form-group input-group">
                                 <label for="reg-fn">Password</label>
